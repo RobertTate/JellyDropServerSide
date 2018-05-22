@@ -19,6 +19,11 @@ class Table {
         return executeQuery(sql);
     }
 
+    getLeaderBoard() {
+        let sql = `SELECT total_points, game_id, player_id FROM ${this.tableName}`;
+        return executeQuery(sql);
+    }
+
     find(query) {
         let columns = Object.keys(query);
         let values = Object.values(query);
@@ -47,6 +52,17 @@ class Table {
         let sql = `UPDATE ${this.tableName} SET ${updates.join(',')} WHERE id = ${id};`;
         return executeQuery(sql, values);
     }
+
+    updateAdd(id, row) {
+        let columns = Object.keys(row);
+        let values = Object.values(row);
+        let updates = columns.map((columnName) => {
+            return `${columnName} = ?`;
+        });
+        let sql = `UPDATE ${this.tableName} SET ${updates.join(',')} = ${updates.join(',')} + ${values} WHERE id = ${id};`;
+        return executeQuery(sql, values);
+    }
+
 
     delete(id) {
         let sql = `DELETE FROM ${this.tableName} WHERE id = ${id}`;

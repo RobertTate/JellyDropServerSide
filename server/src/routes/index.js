@@ -1,23 +1,21 @@
 import { Router } from 'express';
-import peopleRouter from './people';
-import classesRouter from './classes';
+import pinsRouter from './pins';
+import playerGameRouter from './playergame';
 import authRouter from './auth';
-import usersRouter from './users';
-import stripeDonationsRouter from './stripeDonations';
+import playersRouter from './players';
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 
 router.use('/auth', authRouter);
-router.use('/donate', stripeDonationsRouter);
 
 router.route('*')
     .post(tokenMiddleware, isLoggedIn)
     .put(tokenMiddleware, isLoggedIn)
     .delete(tokenMiddleware, isLoggedIn);
 
-router.use('/classes', classesRouter);
-router.use('/people', peopleRouter);
-router.use('/users', usersRouter);
+router.use('/playergame', playerGameRouter);
+router.use('/pins', pinsRouter);
+router.use('/players', playersRouter);
 
 export default router;
