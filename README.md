@@ -1,4 +1,4 @@
-# Covalence Full Stack Project Boilerplate - Used For Server Side of Covalence Final Project
+# Covalence Full Stack Project Boilerplate - 
 This boilerplate includes build scripts and setup for a ReactJS front-end and an ExpressJS back-end.
 
 ### Getting Started
