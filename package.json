@@ -4,15 +4,12 @@
   "description": "",
   "main": "server/lib/index.js",
   "scripts": {
-    "build:client": "webpack",
     "build:server": "babel ./server/src -d ./server/lib",
-    "clean": "npm run clean:client && npm run clean:server",
-    "clean:client": "rimraf ./client/dist",
+    "clean": "npm run clean:server",
     "clean:server": "rimraf ./server/lib",
-    "dev": "npm run clean && npm run build:server && concurrently -r -k \"npm run watch:client\" \"npm run watch:server\" \"nodemon --watch server/lib --delay 1\"",
-    "start": "npm run clean && npm run build:client && npm run build:server && npm run start:server",
+    "dev": "npm run clean && npm run build:server && concurrently -r -k \"npm run watch:server\" \"nodemon --watch server/lib --delay 1\"",
+    "start": "npm run clean && npm run build:server && npm run start:server",
     "start:server": "node server/lib/index.js",
-    "watch:client": "webpack --watch",
     "watch:server": "babel ./server/src -w -d ./server/lib"
   },
   "author": "Covalence",
