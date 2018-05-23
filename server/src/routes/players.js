@@ -49,23 +49,7 @@ router.put('/password/:id', (req, res) => {
 
 })
 
-router.post('/signup', (req, res) => {
-    
-    generateHash(req.body.hash)
-        .then((hash) => {
-            players.insert({
-                name: req.body.name,
-                email: req.body.email,
-                username: req.body.username,
-                hash: hash
-            })
-        })
-        .then((result) => {
-            res.sendStatus(200);
-        }).catch((err) => {
-            console.log(err)
-        })
-})
+
 
 
 
