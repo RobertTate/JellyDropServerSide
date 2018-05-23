@@ -2,6 +2,8 @@ import { Router } from 'express';
 import passport from 'passport';
 import { encode } from '../utils/tokens';
 import { generateHash } from '../utils/security';
+import Table from '../table';
+
 
 let router = Router();
 
