@@ -7,7 +7,7 @@ let pins = new Table('pins');
 
 
 router.post('/', (req, res) => {
-    let row = { location: req.body.location , playergame_id: req.body.playergame_id, gmae_id: req.body.game_id }
+    let row = { location: req.body.location , playergame_ok_id: req.body.playergame_ok_id, game_ok_id: req.body.game_ok_id }
     pins.insert(row)
     .then((result) => {
         res.sendStatus(200);

@@ -14,6 +14,12 @@ class Table {
         return results[0];
     }
 
+    async getPlayergame(id) {
+        let sql = `SELECT * FROM ${this.tableName} WHERE player_id = ${id};`;
+        let results = await executeQuery(sql, [id]);
+        return results[0];
+    }
+
     getAll() {
         let sql = `SELECT * FROM ${this.tableName}`;
         return executeQuery(sql);
@@ -53,13 +59,21 @@ class Table {
         return executeQuery(sql, values);
     }
 
+    /*
+    when updateAdd is called 
+    get current total in db 
+    add current total to value passed
+    update the total in db 
+    */
+
     updateAdd(id, row) {
         let columns = Object.keys(row);
         let values = Object.values(row);
         let updates = columns.map((columnName) => {
-            return `${columnName} = ?`;
+            return columnName;
         });
-        let sql = `UPDATE ${this.tableName} SET ${updates.join(',')} = ${updates.join(',')} + ${values} WHERE id = ${id};`;
+
+        let sql = `UPDATE ${this.tableName} SET ${updates.join(',')} = ${updates} + ${values} WHERE id = ${id};`;
         return executeQuery(sql, values);
     }
 

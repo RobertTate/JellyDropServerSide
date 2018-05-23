@@ -3,6 +3,7 @@ import { tokenMiddleware, isLoggedIn } from '../middleware/auth.mw';
 import Table from '../table';
 import { generateHash } from '../utils/security';
 
+
 let router = Router();
 
 let players = new Table('players');
@@ -34,6 +35,7 @@ router.put('/email/:id', (req, res) => {
     });
 });
 
+//  Still needs to be fixed and tested
 router.put('/password/:id', (req, res) => {
     let id = req.params.id;
     

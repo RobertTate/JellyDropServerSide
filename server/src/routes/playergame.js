@@ -5,8 +5,8 @@ let router = Router();
 let playergame = new Table('playergame');
 
 router.get('/:id', (req, res) => {
-    let id = req.params.player_id;
-    playergame.getOne(id)
+    let id = req.params.id;
+    playergame.getPlayergame(id)
     .then((result) => {
         res.json(result)
     }).catch((err) => {
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 
 router.put('/score/:id', (req, res) => {
     let id = req.params.id;
-    let row = { total_points: req.body.points }
+    let row = { total_points: req.body.total_points }
     playergame.updateAdd(id, row)
     .then((result) => {
         res.sendStatus(200)
@@ -36,8 +36,8 @@ router.put('/score/:id', (req, res) => {
 
 router.put('/pins/:id', (req, res) => {
     let id = req.params.id;
-    let row = { number_pins: req.body.pins }
-    playergame.update(id, row)
+    let row = { number_pins: req.body.number_pins }
+    playergame.updateAdd(id, row)
     .then((result) => {
         res.sendStatus(200)
     }).catch((err) => {

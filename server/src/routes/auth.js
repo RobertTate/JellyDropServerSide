@@ -7,6 +7,9 @@ import Table from '../table';
 
 let router = Router();
 
+let players = new Table('players');
+
+
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, token, info) => {
         if (err) {
