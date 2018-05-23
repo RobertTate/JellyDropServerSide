@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { encode } from '../utils/tokens';
+import { generateHash } from '../utils/security';
 
 let router = Router();
 
@@ -16,5 +17,6 @@ router.post('/login', (req, res, next) => {
         }
     })(req, res, next);
 });
+
 
 export default router;
