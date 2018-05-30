@@ -17,7 +17,18 @@ class Table {
     async getPlayergame(id) {
         let sql = `SELECT * FROM ${this.tableName} WHERE player_id = ${id};`;
         let results = await executeQuery(sql, [id]);
-        return results[0];
+        return results;
+    }
+    async getPlayerScore(id) {
+        let sql = `select SUM(total_points) as Total_Score from ${this.tableName} WHERE player_id = ${id}`;
+        let results = await executeQuery(sql, [id]);
+        return results;
+    }
+
+    async getLeaderBoard(id) {
+        let sql = `SELECT total_points, game_id, player_id FROM ${this.tableName} WHERE game_id = ${id} ORDER BY total_points DESC`;
+        let results = await executeQuery(sql, [id]);
+        return results;
     }
 
     getAll() {
@@ -25,10 +36,12 @@ class Table {
         return executeQuery(sql);
     }
 
-    getLeaderBoard() {
-        let sql = `SELECT total_points, game_id, player_id FROM ${this.tableName}`;
+    async everyLeader() {
+        let sql = `SELECT SUM(total_points) as Total_Score, player_id FROM ${this.tableName} GROUP BY player_id ORDER BY SUM(total_points) DESC`;
         return executeQuery(sql);
+
     }
+
 
     find(query) {
         let columns = Object.keys(query);
