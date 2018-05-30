@@ -27,6 +27,8 @@ router.get('/:id', (req, res) => {
 router.put('/email/:id', (req, res) => {
     let id = req.params.id;
     let row = { email: req.body.email };
+    console.log(req.params);
+    console.log(req.body);
     players.update(id, row)
     .then((player) => {
         res.json(player);
