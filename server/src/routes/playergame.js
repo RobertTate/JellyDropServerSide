@@ -56,5 +56,35 @@ router.put('/droppedtotal/:id', (req, res) => {
     });
 });
 
+router.get('/totalscore/:id', (req, res) => {
+    let id = req.params.id;
+    playergame.getPlayerScore(id)
+    .then((score) => {
+        res.json(score);
+    }).catch((err) => {
+        console.log(err);
+    });
+});
+
+router.get('/leaderboard/:id', (req, res) => {
+    let id = req.params.id;
+    playergame.getLeaderBoard(id)
+    .then((score) => {
+        res.json(score);
+    }).catch((err) => {
+        console.log(err);
+    })
+
+})
+
+router.get(`/everyLeader/all`, (req, res) => {
+    console.log('correct router');
+    playergame.everyLeader()
+    .then((scores) => {
+        res.json(scores);
+    }).catch((err) => {
+        console.log(err);
+    })
+})
 
 export default router;
