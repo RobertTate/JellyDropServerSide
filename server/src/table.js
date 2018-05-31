@@ -15,7 +15,7 @@ class Table {
     }
 
     async getPlayergame(id) {
-        let sql = `SELECT * FROM ${this.tableName} WHERE player_id = ${id};`;
+        let sql = `SELECT * FROM ${this.tableName} WHERE player_id = ${id} ORDER BY id;`;
         let results = await executeQuery(sql, [id]);
         return results;
     }

@@ -78,7 +78,6 @@ router.get('/leaderboard/:id', (req, res) => {
 })
 
 router.get(`/everyLeader/all`, (req, res) => {
-    console.log('correct router');
     playergame.everyLeader()
     .then((scores) => {
         res.json(scores);

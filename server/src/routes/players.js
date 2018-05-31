@@ -27,8 +27,6 @@ router.get('/:id', (req, res) => {
 router.put('/email/:id', (req, res) => {
     let id = req.params.id;
     let row = { email: req.body.email };
-    console.log(req.params);
-    console.log(req.body);
     players.update(id, row)
     .then((player) => {
         res.json(player);
@@ -37,11 +35,9 @@ router.put('/email/:id', (req, res) => {
     });
 });
 
-//  Still needs to be fixed and tested
 router.put('/password/:id', (req, res) => {
     let id = req.params.id;
-    
-    generateHash(req.body.password)
+    generateHash(req.body.hash)
     .then((hash) => {
         let row = { hash: `${hash}` };
         players.update(id, row)
