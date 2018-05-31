@@ -14,14 +14,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
-    playergame.getLeaderBoard()
-    .then((result) => {
-        res.json(result)
-    }).catch((err) => {
-        console.log(err);
-    });
-});
 
 router.put('/score/:id', (req, res) => {
     let id = req.params.id;
@@ -77,7 +69,7 @@ router.get('/leaderboard/:id', (req, res) => {
 
 })
 
-router.get(`/everyLeader/all`, (req, res) => {
+router.get(`/everyleader/all`, (req, res) => {
     playergame.everyLeader()
     .then((scores) => {
         res.json(scores);

@@ -6,7 +6,7 @@ let router = Router();
 let game = new Table('game');
 
 router.get('/', (req, res) => {
-    game.getAll()
+    game.getAllGames()
     .then((result) => {
         res.json(result)
     }).catch((err) => {
