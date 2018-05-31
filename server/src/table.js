@@ -20,24 +20,30 @@ class Table {
         return results;
     }
     async getPlayerScore(id) {
-        let sql = `select SUM(total_points) as Total_Score from ${this.tableName} WHERE player_id = ${id}`;
+        let sql = `select SUM(total_points) as Total_Score, from ${this.tableName} WHERE player_id = ${id}`;
         let results = await executeQuery(sql, [id]);
         return results;
     }
 
     async getLeaderBoard(id) {
-        let sql = `SELECT total_points, game_id, player_id FROM ${this.tableName} WHERE game_id = ${id} ORDER BY total_points DESC`;
+        let sql = `SELECT total_points, game_id, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC`;
         let results = await executeQuery(sql, [id]);
         return results;
     }
+
 
     getAll() {
         let sql = `SELECT * FROM ${this.tableName}`;
         return executeQuery(sql);
     }
 
+    getAllGames() {
+        let sql = `SELECT * FROM ${this.tableName} ORDER BY id;`;
+        return executeQuery(sql);
+    }
+
     async everyLeader() {
-        let sql = `SELECT SUM(total_points) as Total_Score, player_id FROM ${this.tableName} GROUP BY player_id ORDER BY SUM(total_points) DESC`;
+        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC`;
         return executeQuery(sql);
 
     }
