@@ -4,11 +4,14 @@ import playerGameRouter from './playergame';
 import authRouter from './auth';
 import playersRouter from './players';
 import gameRouter from './game';
+import contactRouter from './contactform';
+
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 
 router.use('/auth', authRouter);
+router.use('/contact', contactRouter);
 
 
 router.route('*')
