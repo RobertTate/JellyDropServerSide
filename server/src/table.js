@@ -31,6 +31,12 @@ class Table {
         return results;
     }
 
+    async profileRankings(id) {
+        let sql = `SELECT total_points, game_id, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC`;
+        let results = await executeQuery(sql, [id]);
+        return results;
+    }
+
 
     getAll() {
         let sql = `SELECT * FROM ${this.tableName}`;
@@ -47,7 +53,12 @@ class Table {
         return executeQuery(sql);
 
     }
+    
+    async allTimeRankings() {
+        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC`;
+        return executeQuery(sql);
 
+    }
 
     find(query) {
         let columns = Object.keys(query);

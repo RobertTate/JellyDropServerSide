@@ -69,8 +69,28 @@ router.get('/leaderboard/:id', (req, res) => {
 
 })
 
+router.get('/profilerank/:id', (req, res) => {
+    let id = req.params.id;
+    playergame.getLeaderBoard(id)
+    .then((score) => {
+        res.json(score);
+    }).catch((err) => {
+        console.log(err);
+    })
+
+})
+
 router.get(`/everyleader/all`, (req, res) => {
     playergame.everyLeader()
+    .then((scores) => {
+        res.json(scores);
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
+router.get(`/alltimerank/all`, (req, res) => {
+    playergame.allTimeRankings()
     .then((scores) => {
         res.json(scores);
     }).catch((err) => {
