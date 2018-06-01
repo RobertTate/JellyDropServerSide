@@ -4,6 +4,7 @@
 let cfg = {
     MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
     MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
+    masterEmail: process.env.masterEmail,
     DB_HOST: process.env.DB_HOST,
     DB_USER: process.env.DB_USER,
     DB_PASSWORD: process.env.DB_PASSWORD,
