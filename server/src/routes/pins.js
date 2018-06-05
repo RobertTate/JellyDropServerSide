@@ -34,14 +34,14 @@ router.get('/', (req, res) => {
 
 router.put('/', (req, res) => {
     // let id = req.params.id;
-    console.log(req.body);
-    // let row = { pickedUpBy: req.body.pins.pickedupby, location: null };
-    // pins.update(id, row)
-    // .then((player) => {
-    //     res.sendStatus(200);
-    // }).catch((err) => {
-    //     console.log(err);
-    // })
+    // console.log(req.body);
+    let row = { playergame_ok_id: req.body.playerId, longitude: req.body.long, latitude: req.body.lat };
+    pins.updatePin(row)
+    .then((player) => {
+        res.sendStatus(200);
+    }).catch((err) => {
+        console.log(err);
+    })
 });
 
 

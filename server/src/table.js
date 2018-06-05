@@ -94,6 +94,18 @@ class Table {
         return executeQuery(sql, values);
     }
 
+    updatePin(row) {
+        console.log('CONSOLE LOGGING TABLE ROW')
+        console.log(row)
+        let columns = Object.keys(row);
+        let values = Object.values(row);
+        let updates = columns.map((columnName) => {
+            return `${columnName} = ?`;
+        });
+        let sql = `UPDATE ${this.tableName} SET playergame_ok_id = ${row.playergame_ok_id}, isPickedUp=1 WHERE longitude = ${row.longitude} AND latitude = ${row.latitude};`;
+        return executeQuery(sql, values);
+    }
+
     /*
     when updateAdd is called 
     get current total in db 
