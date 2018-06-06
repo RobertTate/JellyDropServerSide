@@ -5,7 +5,9 @@ import morgan from 'morgan';
 import routes from './routes';
 import stateRouting from './middleware/routing.mw';
 import configurePassport from './config/passport';
+import EventTable from './events'
 
+const eventTrigger = new EventTable();
 
 
 let app = express();
@@ -13,6 +15,10 @@ let app = express();
 app.use(morgan('dev'));
 
 app.use(express.json());
+
+eventTrigger.dailyEvent();
+eventTrigger.weeklyBonusEvent();
+eventTrigger.weeklyGameEvent();
 
 configurePassport(app);
 
