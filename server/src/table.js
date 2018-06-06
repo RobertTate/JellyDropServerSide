@@ -27,13 +27,13 @@ class Table {
     }
 
     async getLeaderBoard(id) {
-        let sql = `SELECT total_points, game_id, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC LIMIT 100`;
+        let sql = `SELECT total_points, game_id, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC LIMIT 100`;
         let results = await executeQuery(sql, [id]);
         return results;
     }
 
     async profileRankings(id) {
-        let sql = `SELECT total_points, game_id, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC`;
+        let sql = `SELECT total_points, game_id, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC`;
         let results = await executeQuery(sql, [id]);
         return results;
     }
