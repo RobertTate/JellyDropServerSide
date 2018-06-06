@@ -98,4 +98,15 @@ router.get(`/alltimerank/all`, (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+    let row = { player_id: req.body.player_id, game_id: req.body.game_id };
+    playergame.insert(row)
+        .then((result) => {
+            res.sendStatus(200)  
+        }).catch((err) => {
+            console.log(err);
+        });
+    })
+
+
 export default router;

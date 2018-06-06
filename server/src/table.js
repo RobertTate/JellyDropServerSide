@@ -19,6 +19,7 @@ class Table {
         let results = await executeQuery(sql, [id]);
         return results;
     }
+
     async getPlayerScore(id) {
         let sql = `select SUM(total_points) as Total_Score, from ${this.tableName} WHERE player_id = ${id}`;
         let results = await executeQuery(sql, [id]);
