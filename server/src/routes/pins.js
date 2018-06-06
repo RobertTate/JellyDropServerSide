@@ -11,9 +11,10 @@ router.post('/', (req, res) => {
     console.log(req.body.lat);
     console.log(req.body.long);
     console.log(req.body.gameId);
-    console.log(req.body.playerId);
+    console.log(req.body.playerGameId);
+    console.log(req.body);
 
-    let row = { latitude: req.body.lat, longitude: req.body.long, game_ok_id: req.body.gameId, playergame_ok_id: req.body.playerId }
+    let row = { latitude: req.body.lat, longitude: req.body.long, game_ok_id: req.body.gameId, playergame_ok_id: req.body.playerGameId }
     pins.insert(row)
     .then((result) => {
         res.sendStatus(200);
@@ -32,16 +33,27 @@ router.get('/', (req, res) => {
    });
 });
 
+router.get('/:id', (req, res) => {
+    let id = req.params.id;
+    pins.getOne(id)
+    .then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+    });
+});
+
+
 router.put('/', (req, res) => {
     // let id = req.params.id;
-    console.log(req.body);
-    // let row = { pickedUpBy: req.body.pins.pickedupby, location: null };
-    // pins.update(id, row)
-    // .then((player) => {
-    //     res.sendStatus(200);
-    // }).catch((err) => {
-    //     console.log(err);
-    // })
+    // console.log(req.body);
+    let row = { playergame_ok_id: req.body.playerId, longitude: req.body.long, latitude: req.body.lat };
+    pins.updatePin(row)
+    .then((player) => {
+        res.sendStatus(200);
+    }).catch((err) => {
+        console.log(err);
+    })
 });
 
 
