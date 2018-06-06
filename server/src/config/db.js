@@ -3,7 +3,7 @@ import { config } from '../config';
 
 
 let pool = mysql.createPool({
-    connectionLimit: 10,
+    connectionLimit: 3,
     host: config.DB_HOST,
     user: config.DB_USER,
     password: config.DB_PASSWORD,
