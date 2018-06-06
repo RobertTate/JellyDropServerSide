@@ -55,13 +55,13 @@ class Table {
     }
 
     async everyLeader() {
-        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC LIMIT 100`;
+        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC LIMIT 100`;
         return executeQuery(sql);
 
     }
     
     async allTimeRankings() {
-        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.name FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC`;
+        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC`;
         return executeQuery(sql);
 
     }
