@@ -94,15 +94,33 @@ class Table {
         return executeQuery(sql, values);
     }
 
-    updatePin(row) {
-        console.log('CONSOLE LOGGING TABLE ROW')
-        console.log(row)
+    updatePin(id, row) {
         let columns = Object.keys(row);
         let values = Object.values(row);
         let updates = columns.map((columnName) => {
             return `${columnName} = ?`;
         });
-        let sql = `UPDATE ${this.tableName} SET playergame_ok_id = ${row.playergame_ok_id}, isPickedUp=1 WHERE longitude = ${row.longitude} AND latitude = ${row.latitude};`;
+        let sql = `UPDATE ${this.tableName} SET playergame_ok_id = ${row.playergame_ok_id}, isPickedUp=1 WHERE id = ${id}`;
+        return executeQuery(sql, values);
+    }
+
+    scoreChangeForPinDrop(row) {
+        let columns = Object.keys(row);
+        let values = Object.values(row);
+        let updates = columns.map((columnName) => {
+            return `${columnName} = ?`;
+        });
+        let sql = `UPDATE ${this.tableName} SET total_points = total_points + 2, number_pins = number_pins - 1, number_dropped = number_dropped + 1 WHERE id = ${row.playergame_ok_id}`;
+        return executeQuery(sql, values);
+    }
+
+    scoreChangeForPinPickup(row) {
+        let columns = Object.keys(row);
+        let values = Object.values(row);
+        let updates = columns.map((columnName) => {
+            return `${columnName} = ?`;
+        });
+        let sql = `UPDATE ${this.tableName} SET total_points = total_points + 24, number_pins = number_pins + 1, number_pickedup = number_pickedup + 1 WHERE id = ${row.playergame_ok_id}`;
         return executeQuery(sql, values);
     }
 
