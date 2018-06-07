@@ -27,13 +27,13 @@ class Table {
     }
 
     async getLeaderBoard(id) {
-        let sql = `SELECT total_points, game_id, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC LIMIT 100`;
+        let sql = `SELECT total_points, game_id, player_id, p.username, p.picture FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC LIMIT 100`;
         let results = await executeQuery(sql, [id]);
         return results;
     }
 
     async profileRankings(id) {
-        let sql = `SELECT total_points, game_id, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC`;
+        let sql = `SELECT total_points, game_id, player_id, p.username, FROM playergame pg JOIN players p on pg.player_id = p.id  WHERE game_id = ${id} ORDER BY total_points DESC`;
         let results = await executeQuery(sql, [id]);
         return results;
     }
@@ -55,7 +55,7 @@ class Table {
     }
 
     async everyLeader() {
-        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.username FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC LIMIT 100`;
+        let sql = `SELECT SUM(total_points) as Total_Score, player_id, p.username, p.picture FROM playergame pg JOIN players p on pg.player_id = p.id GROUP BY player_id ORDER BY SUM(total_points) DESC LIMIT 100`;
         return executeQuery(sql);
 
     }
