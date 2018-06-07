@@ -50,14 +50,14 @@ class EventTable {
                         let sql = `SELECT * FROM pins WHERE ${id} = playergame_ok_id AND isPickedUp = 1`;
                         return executeQuery(sql)                                       
                         .then((pins) => {
-                            if ( pins.length >= 5) {                               
+                            if ( pins.length >= 140) {                               
                                 let id = playergame.id;
                                 let bonus = 12 * playergame.number_pickedup;
                                 let row = { total_points: bonus };
                                 this.gameBonus(id, row)                            
                                 .then((res) => {console.log(res)})
                                 .catch((err) => {console.log(err)})
-                            } else if ( pins.length >= 1) {                        
+                            } else if ( pins.length >= 105) {                        
                                 let id = playergame.id;
                                 let bonus = 6 * playergame.number_pickedup;
                                 let row = { total_points: bonus };
