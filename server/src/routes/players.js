@@ -47,9 +47,18 @@ router.put('/password/:id', (req, res) => {
             console.log(err);
         });
 
-
-
 })
+
+router.put('/photo/:id', (req, res) => {
+    let id = req.params.id;
+    let row = { picture: req.body.photo };
+    players.update(id, row)
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((err) => {
+        console.log(err);
+    });
+});
 
 router.post('/checkpassword/:id', (req, res) => {
     let id = req.params.id;
