@@ -1,74 +1,50 @@
-# Covalence Full Stack Project Boilerplate - 
-This boilerplate includes build scripts and setup for a ReactJS front-end and an ExpressJS back-end.
+# Jelly Drop (Back End) ReadMe:
 
-### Getting Started
-Remember to run `npm install` to install all necessary dependencies. __Also read the Setting Environment Properties section below!__
+## A Mobile Application built with React Native 
 
-### Careful!
-Make sure you are always working within the front-end or back-end `src` directory. Stay out of the `dist` and `lib` directories, as their contents will be erased each time the source code is transpiled.
+**Developed during the 2018 Covalence Nashville Cohort, by Justin Head, Alan Pramuk, and Robert Tate.** 
 
-### (NEW) Setting Environment Properties
-This boilerplate has been updated to use a configuration method that does not require macOS/Linux. Here is what you need to know:
-* Don't worry about `ENV_VAR` or `bash` variables if you recall them from a previous version of this boilerplate.
-* Your variables/properties that contain private data are now in a config that can be imported from `config/index.js`, or just `config`. Here is an example:
+![](./jellybeansmedium.png)
 
-  ```js
-  import { config } from '../relative/path/to/config';
-  console.log(config.STRIPE_SK);
-  ```
-* `index.js` in the `config` folder is a "normalization" point. It is a single point of export, where either development or production data will be gathered, and then exported.
-* `config/env/development.js` is included in the `.gitignore` of this boilerplate. As it is where you will be typing your API keys for local use, IT IS IMPORTANT THIS FILE IS NOT PUSHED TO GITHUB. __It is your responsiblity to ensure that this file is not prepped for staging/commit before you commit changes to your project__.
-  * Because it is not included in git, it may not be in this boilerplate to begin with. Inside `server/src/config/env`, create a file called `development.js` (CHECK SPELLING!) with the following contents:
 
-  ```js
-  // file: server/src/config/env/development.js
-  // This object should mimic the structure of the object in env/production, but should use actual values
-  let cfg = {
-      MAILGUN_API_KEY: 'Your Mailgun API Key Here',
-      STRIPE_SK: 'Your Stripe Secret Key Here'
-  };
 
-  export { cfg };
-  ```
+## Synopsis:
+Jelly Drop is a daily game where players can actively or passively collect little jellies around the world to receive points towards their total score. Every day, the player has 20 jellies to place around town using an interactive map screen. The goal is to drop all of your own jellies in places where other players will find them and collect them (they get points for doing so). Aside from dropping jellies (2pts), you also need to collect other jellies dropped by other players (24pts for each one you collect, and a new jelly you can drop again). There are built-in weekly bonuses, and the game resets monthly. Scores are calculated for individual players, and a top 100 leaderboard page shows rankings for the current game, last game, and all time score.
 
-  * Note that in this file, you will actually be typing your API keys. Again, this is why it is important this file is ignored by git.
-* To review, for any "secret" value, you can put it in the config. It will need to be added in 3 places:
-  * `server/src/config/env/development.js`- add the property and actual value to the exported object
-  * `server/src/config/env/production.js`- add the property and use a Node environment property as the value. ex: `process.env.SOME_PROP`
-  * In your deployment environment (AWS, Heroku, etc.), set your Environment Properties: `NODE_ENV`, `STRIPE_SK`, etc.
-    * The `NODE_ENV` environment property should be set to "production" (no quotes) in AWS, Heroku, etc.
+---
+---
 
-### Running
-* To run the project during development (for automatic transpile and server restart), use `npm run dev`.
-* `npm start` will be used in a production environment. It transpiles once and does not look for changes.
+## Back End Top Mentions:
+* [Node.js](https://nodejs.org/en/)
+    * Because JavaScript is awesome.
+* [Express](https://expressjs.com/)
+    * Used to run our server and help manage our API routes.
+* [MySQL](https://www.mysql.com/)
+    * Used to hold a number of relational tables so that our app has information about players, jellies, scores, and game instances. 
+* [Node-Schedule](https://github.com/node-schedule/node-schedule)
+    * We used this library to implement a number of scheduled events, used to make changes to the database on a daily, weekly, or monthly basis. 
+* [Passport](http://www.passportjs.org/)
+    * Used for authentication purposes, helping to create secure logins for each player.
+* [Bcrypt](https://www.npmjs.com/package/bcrypt)
+    * A library used to hash and salt passwords.
+* [Mailgun-JS](https://www.npmjs.com/package/mailgun-js)
+    * Built a contact form on the front end, and used this libary to set up email servicing, allowing the player to send us emails with any feedback.
+---
+---
 
-### Importing Images and Documents
-* This boilerplate sets up `file-loader` in the the `webpack.config.js` file.
-* By using `file-loader`, you can keep your images/documents in logical folders within your components, and then import them using their relative paths. During the build process, webpack will copy the files into the `client/dist` folder, giving them a hash-based name and updating your html to use the correct name and path.
-* Usage:
-  * Files with `png`, `jpg`, and `gif` extensions can be imported into your Component and used as follows (note the braces used in the `src` attribute):
+## Front End Top Mentions- [_Click Here For Front End Repo_](https://github.com/alanpramuk9/PhoneTag)
 
-  ```js
-  import myLogo from '../relativePath/to/logo.png';
-
-  render() {
-      ...
-      <img src={myLogo} alt="My Company Logo" />
-      // Final html may look like: <img src="/dist/images/1aecb1718293a.png" alt="My Company Logo>
-      ...
-  }
-  ```
-  
-  * Files with `pdf` extensions can be imported into your Component and used as follows (note the braces used in the `href` attribute):
-
-  ```js
-  import myDoc from '../relativePath/to/doc.pdf';
-
-  render() {
-      ...
-      <a href={myDoc}>Click here!</a>
-        // Final html may look like: <a href="/dist/docs/38923afdbc.pdf">Click here!</a>
-      ...
-  }
-  ```
-* If you need to support additional file types, feel free to modify the `webpack.config.js`. You should be able to discern the sections for image handling vs document handling.
+* [React Native](https://facebook.github.io/react-native/)
+    * The Framework we used to build this native mobile app.
+* [NativeBase](https://nativebase.io/)
+    * While much of the styling in the project was custom, NativeBase was used for minor adjustments.
+* [React Navigation](https://reactnavigation.org/)
+    * This library was used to build navigation between screens, and set up an authentication flow using a switch navigator. 
+* [React Native AWS3](https://github.com/benjreinhart/react-native-aws3)
+    * Used to set up profile images, which could then be stored in our MySQL Database.
+* [React Native Maps](https://github.com/react-community/react-native-maps)
+    * Using the Google Maps API, this library was used extensively, and is the core visual component of the game. 
+* [React Native Switch Toggle](https://github.com/dooboolab/react-native-switch-toggle)
+    * Added interactive toggle icons used on the account settings.  
+---
+---
