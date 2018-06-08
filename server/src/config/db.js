@@ -17,7 +17,7 @@ async function executeQuery(sql, args = []) {
 
 function callProcedure(procedureName, args = []) {
     let placeholders = generatePlaceholders(args);
-    let callString = `CALL ${procedureName}(${placeholders});`; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
+    let callString = `CALL ${procedureName}(${placeholders});`;
     return executeQuery(callString, args);
 }
 
@@ -39,7 +39,7 @@ function generatePlaceholders(args = []) {
     let placeholders = '';
     if (args.length > 0) {
         for (let i = 0; i < args.length; i++) {
-            if (i === args.length - 1) { // if we are on the last argument in the array
+            if (i === args.length - 1) { 
                 placeholders += '?';
             } else {
                 placeholders += '?,';
