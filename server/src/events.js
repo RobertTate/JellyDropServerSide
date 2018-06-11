@@ -35,7 +35,7 @@ class EventTable {
     }
     
     weeklyBonusEvent() {
-        var j = schedule.scheduleJob('59 4 * * *', () => {                             
+        var j = schedule.scheduleJob('59 4 * * 1', () => {                             
             let sql = `SELECT * FROM game ORDER BY id;`;
             executeQuery(sql)                                                           
                 .then((allgames) => {                                                   
