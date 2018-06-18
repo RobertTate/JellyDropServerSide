@@ -5,6 +5,7 @@ import authRouter from './auth';
 import playersRouter from './players';
 import gameRouter from './game';
 import contactRouter from './contactform';
+import wakeUpRouter from './wakeup';
 
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
@@ -12,6 +13,8 @@ let router = Router();
 
 router.use('/auth', authRouter);
 router.use('/contact', contactRouter);
+router.use('/wakeup', wakeUpRouter);
+
 
 
 router.route('*')
