@@ -1,8 +1,7 @@
 var http = require('http'); //importing http
 
 var options = {
-    host: 'https://covalence-final.herokuapp.com',
-    port: 80,
+    host: 'covalence-final.herokuapp.com',
     path: '/WAKEUP_DYNO'
 };
 console.log("======WAKUP DYNO START");
